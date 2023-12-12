@@ -15,8 +15,8 @@ export class CartController {
   })
   getCart(
     @Query('userId') userId: string,
-    @Query('pageNum') pageNum: bigint,
-    @Query('pageSize') pageSize: bigint
+    @Query('pageNum') pageNum: number,
+    @Query('pageSize') pageSize: number
   ) {
 
     return this.client.send({cmd: 'get_cart_items'}, {
@@ -47,7 +47,7 @@ export class CartController {
   updateCartItemAmount(
     @Query('userId') userId: string, 
     @Param() productId: string, 
-    @Body() amount: bigint) {
+    @Body() amount: number) {
 
     return this.client.send({cmd: 'update_cart_item_amount'}, {
       userId: userId,

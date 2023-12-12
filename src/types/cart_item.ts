@@ -6,5 +6,5 @@ export class CartItemDTO {
     @ApiProperty({ nullable: false, type: ProductDTO })
     product: ProductDTO;
     @ApiProperty({ nullable: false, type: Number })
-    amount: bigint;
+    amount: number;
 }

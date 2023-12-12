@@ -15,8 +15,8 @@ export class OrderController {
     type: [OrderPageDTO]
   })
   getAllOrders(
-    @Query('pageNum') pageNum: bigint,
-    @Query('pageSize') pageSize: bigint,
+    @Query('pageNum') pageNum: number,
+    @Query('pageSize') pageSize: number,
     @Query('pageSize') userId: string,
   ) {
 

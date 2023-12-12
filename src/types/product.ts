@@ -14,7 +14,7 @@ export class ProductDTO {
     @ApiProperty({ nullable: false, type: Number })
     price: number;
     @ApiProperty({ nullable: false, type: Number })
-    stock_quantity: bigint;
+    stock_quantity: number;
 }
 
 export class ProductDetailDTO {
@@ -31,12 +31,12 @@ export class ProductDetailDTO {
     @ApiProperty({ nullable: false, type: Number })
     price: number;
     @ApiProperty({ nullable: false, type: Number })
-    stock_quantity: bigint;
+    stock_quantity: number;
     // additional image, video and text descriptions make a ProductDTO into a ProductDetailDTO
-    @ApiProperty({ nullable: true, type: String })
-    description_text: string;
-    @ApiProperty({ nullable: true, type: String })
+    @ApiProperty({ nullable: true, type: [String] })
+    description_text: Array<string>;
+    @ApiProperty({ nullable: true, type: [String] })
     description_images: Array<string>;
-    @ApiProperty({ nullable: true, type: String })
+    @ApiProperty({ nullable: true, type: [String] })
     description_videos: Array<string>;
 }

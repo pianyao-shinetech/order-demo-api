@@ -3,11 +3,11 @@ import { OrderDTO } from './order';
 
 export class OrderPageDTO {
     @ApiProperty({ nullable: false, type: Number })
-    page_num: bigint;
+    page_num: number;
     @ApiProperty({ nullable: false, type: Number })
-    page_size: bigint;
-    @ApiProperty({ nullable: false, type: Number })
-    page_total: Date;
+    page_size: number;
     @ApiProperty({ nullable: false, type: [OrderDTO] })
     page_data: Array<OrderDTO>;
+    @ApiProperty({ nullable: false, type: Number })
+    total: number;
 }
