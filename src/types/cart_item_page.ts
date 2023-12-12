@@ -9,5 +9,5 @@ export class CartItemPageDTO {
     @ApiProperty({ nullable: false, type: Number })
     total: number;
     @ApiProperty({ nullable: false, type: [CartItemDTO] })
-    page_data: Array<CartItemDTO>;
+    items: Array<CartItemDTO>;
 }

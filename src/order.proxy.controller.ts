@@ -37,8 +37,8 @@ export class OrderController {
   ) {
 
     return this.client.send({cmd: 'get_order'}, {
-      orderId: orderId,
-      userId: userId
+      order_id: orderId,
+      user_id: userId
     })
   }
 
@@ -46,18 +46,41 @@ export class OrderController {
   @ApiCreatedResponse({
     type: OrderDTO
   })
-  placeOrder(
+  createOrder(
     @Query('userId') userId: string, 
     @Body() cartItems: [CartItemDTO]
   ) {
 
-    return this.client.send({cmd: 'place_order'}, {
+    return this.client.send({cmd: 'create_order'}, {
       user_id: userId,
       order_items: cartItems
     })
   }
 
-  // TODO
+  // TODO call external payment API and record payment history
+  @Post(':order_id/payments')
+  @ApiOkResponse({
+    type: String
+  })
+  placeOrder(
+    @Query('userId') userId: string, 
+    @Query('orderId') orderId: string,
+    @Body() paymentInfo: Object
+  ) {
+
+    return this.client.send({cmd: 'place_order'}, {
+      user_id: userId,
+      order_id: orderId,
+      payment: paymentInfo,
+    })
+  }
+
+  /**
+   * TODO various usage:
+   * 1. As a call back from external systems (payment, delivery, etc.) to change the the order status to
+   * PLACED, SHIPPED, DELIVERED, RETURN_STARTED, RETURNED, REFUNDED, etc.
+   * 2. User call it directly to cancel an order
+   */ 
   @Put(':order_id/status')
   @ApiOkResponse({
     type: String
@@ -70,8 +93,8 @@ export class OrderController {
 
     return this.client.send({cmd: 'update_order_status'}, {
       id: orderId,
+      status: orderStatus,
       user_id: userId,
-      status: orderStatus
     })
   }
 

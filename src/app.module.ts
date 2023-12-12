@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-import { ClientProxyFactory, Transport } from '@nestjs/microservices';
+import { ClientProxyFactory, TcpOptions, Transport } from '@nestjs/microservices';
 import { AppController } from './app.controller';
 import { CartController } from './cart.proxy.controller';
 import { OrderController } from './order.proxy.controller';
@@ -15,7 +15,11 @@ import { AppService } from './app.service';
       provide: 'PRODUCT_SERVICE',
       useFactory: () => {
         return ClientProxyFactory.create({
-          transport: Transport.TCP
+          transport: Transport.TCP,
+          options: {
+            host: '0.0.0.0',
+            port: 3011,
+          }
         });
       },
     },
@@ -23,7 +27,11 @@ import { AppService } from './app.service';
       provide: 'CART_SERVICE',
       useFactory: () => {
         return ClientProxyFactory.create({
-          transport: Transport.TCP
+          transport: Transport.TCP,
+          options: {
+            host: '0.0.0.0',
+            port: 3021,
+          }
         });
       },
     },
@@ -31,7 +39,11 @@ import { AppService } from './app.service';
       provide: 'ORDER_SERVICE',
       useFactory: () => {
         return ClientProxyFactory.create({
-          transport: Transport.TCP
+          transport: Transport.TCP,
+          options: {
+            host: '0.0.0.0',
+            port: 3031,
+          }
         });
       },
     },

@@ -20,9 +20,9 @@ export class CartController {
   ) {
 
     return this.client.send({cmd: 'get_cart_items'}, {
-      userId: userId,
-      pageNum: pageNum,
-      pageSize: pageSize
+      user_id: userId,
+      page_num: pageNum,
+      page_size: pageSize
     })
   }
 
@@ -35,8 +35,8 @@ export class CartController {
     @Body() cartItem: CartItemDTO ) {
 
     return this.client.send({cmd: 'add_item_to_cart'}, {
-      userId: userId,
-      cartItem: cartItem
+      user_id: userId,
+      cart_item: cartItem
     })
   }
 
@@ -50,8 +50,8 @@ export class CartController {
     @Body() amount: number) {
 
     return this.client.send({cmd: 'update_cart_item_amount'}, {
-      userId: userId,
-      productId: productId,
+      user_id: userId,
+      product_id: productId,
       amount: amount
     })
   }
